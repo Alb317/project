@@ -1,0 +1,32 @@
+#import data
+mongoimport --db catalog --collection electronics --file catalog.json
+
+#use mongodb cli
+mongosh
+
+# count number of laptop
+db.electronics.aggregate( [
+  { $match: { "type": "laptop" } },
+  { $group: { "_id": "$type", total: { $sum: 1 } } }
+] );
+
+# create index by type
+db.electronics.createIndex({"type":1})
+
+# count number of smart phone which has screen size of 6
+db.electronics.aggregate([
+{$match:{$and:[{"type":"smart phone"},
+{"screen size":6}]}},{$group:{"_id":null, count:{$sum:1}}}
+]);
+
+# find the average of smart phone's screen size
+db.electronics.aggregate([
+{$match:{"type":"smart phone"}},
+{$group:{"_id":"$type", average_screen_size:{$avg:1}}}
+]);
+
+#exit to terminal
+exit
+
+#export json file to csv with _id,type,model
+mongoexport --db catalog --collection electronics --out electronics.csv --type=csv --fields _id,type,model
