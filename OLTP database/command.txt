@@ -1,0 +1,58 @@
+#load data
+wget 'https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-DB0321EN-SkillsNetwork/oltp/oltpdata.csv'
+
+# start mysql
+mysql --host=127.0.0.1 --port=3306 --user=root --password
+
+#create database
+CREATE DATABASE sales;
+
+#select sales database
+USE sales
+
+#create table sales_data
+CREATE TABLE sales_data (
+	product_id int,
+	customer_id int,
+	price int,
+	quantity int,
+	timestamp timestamp
+	);
+
+# check table 
+SHOW TABLES;
+
+#import csv file to table
+LOAD DATA INFILE '/home/project/oltpdata.csv'
+	INTO TABLE sales_data
+	FIELDS TERMINATED BY ','
+	ENCLOSED BY '"'
+	LINES TERMINATED BY '\n'
+	;
+
+# check data in table
+SELECT count(*) FROM sales_data;
+
+# create index on timestamp
+CREATE INDEX index1 on sales_data(timestamp);
+
+# check index list
+SHOW INDEX FROM sales.sales_data;
+
+# Write a bash script to export data by nano
+nano dump.sh
+## inside dump.sh
+
+#! /bin/bash
+mysqldump --host=127.0.0.1 --port=3306 --user=root \
+--password sales sales_data > salesdata.sql
+
+
+# change mode of bash
+chmod u+x dump.sh
+
+# check bash in terminal
+ls -l
+
+# use bash
+bash dump.sh
