@@ -1,5 +1,6 @@
 ## This project is part of the IBM data engineer capstone project
 
+![process](https://user-images.githubusercontent.com/108581091/194703580-6cdcf442-a754-45df-b4f8-ca1fd5d9c460.JPG)
 
 #### Tools and Technologies:
 • OLTP database - MySQL
