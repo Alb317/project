@@ -2,7 +2,7 @@
 
 ![process](https://user-images.githubusercontent.com/108581091/194703580-6cdcf442-a754-45df-b4f8-ca1fd5d9c460.JPG)
 
-#### Tools and Technologies:
+### Tools and Technologies:
 • OLTP database - MySQL
 
 • NoSql database - MongoDB
@@ -19,7 +19,7 @@
 
 • Data Pipelines - Apache Airflow
 
-#### Process:
+### Process:
 SoftCart's online presence is primarily through its website, which customers access using a variety of devices like laptops, mobiles and tablets.
 
 All the catalog data of the products is stored in the MongoDB NoSQL server.
